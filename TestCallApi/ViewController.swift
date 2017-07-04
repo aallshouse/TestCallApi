@@ -17,18 +17,12 @@ class ViewController: UIViewController {
         let url = URL(string: "http://localhost:3000/transactions/find/123")!
         let session = URLSession.shared
         let request = URLRequest(url: url)
-        //request.
         let task = session.dataTask(with: request, completionHandler: { data, response, error in
-            //print("made it here")
-            
             guard error == nil else {
-                //print("error is not nil")
-                //print(error!)
                 return
             }
             
             guard let data = data else {
-                //print("data is not correct")
                 return
             }
             
@@ -36,11 +30,6 @@ class ViewController: UIViewController {
                 
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-//                    print(json)
-//                    for (key, value) in json {
-//                        print("Key: \(key)")
-//                        print("Value: \(value)")
-//                    }
                     let trans = Transaction(json: json)
                     print("Id: \(trans.Id)")
                     print("Description: \(trans.Description)")
